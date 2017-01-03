@@ -6,7 +6,6 @@ open Fake.Testing
 
 // Directories
 let buildDir  = "./build/"
-let deployDir = "./deploy/"
 let testDir = "./tests/"
 
 // Filesets
@@ -19,7 +18,7 @@ let version = "0.1"  // or retrieve from CI server
 
 // Targets
 Target "Clean" (fun _ ->
-    CleanDirs [buildDir; deployDir; testDir]
+    CleanDirs [buildDir; testDir]
 )
 
 Target "Build" (fun _ ->
@@ -38,17 +37,10 @@ Target "NUnitTest" (fun _ ->
                 ToolPath = "C:/Program Files (x86)/NUnit.org/nunit-console/nunit3-console.exe"})
 )
 
-Target "Deploy" (fun _ ->
-    !! (buildDir + "/**/*.*")
-    -- "*.zip"
-    |> Zip buildDir (deployDir + "ApplicationName." + version + ".zip")
-)
-
 // Build order
 "Clean"
   ==> "Build"
   ==> "NUnitTest"
-  ==> "Deploy"
 
 // start build
 RunTargetOrDefault "NUnitTest"
