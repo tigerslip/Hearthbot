@@ -1,16 +1,40 @@
-module Parser
+module HearthbotCommandParser
 
 open System
 open FParsec
 
-let test p str =
-    match run p str with
-    | Success(result, _, _)   -> printfn "Success: %A" result
-    | Failure(errorMsg, _, _) -> printfn "Failure: %s" errorMsg
+type GetCommand = {
+    card:string
+}
 
-let psearch = pstringCI "search"
-let pget = pstringCI "get"
+type SearchCommand = {
+    searchTerm:string
+}
 
-let pcommand = psearch <|> pget |>> (fun r -> r)
+type HearthBotCommand = 
+    | Get of GetCommand
+    | Search of SearchCommand
 
-test pcommand
+let Parse str = 
+
+    let psearch = pstringCI "search"
+
+    let pget = pstringCI "get"
+
+    let pcommand = spaces >>. (psearch <|> pget) .>> spaces
+
+    let pcardname = restOfLine false |>> (fun name -> Get {card = name})
+
+    let psearchTerm = restOfLine false |>> (fun term -> Search {searchTerm = term})
+
+    let getOrSearch str = 
+        match str with
+        | "get" -> pcardname
+        | "search" -> psearchTerm
+        | _ -> fail "command should be get or search"
+
+    let pcommandstring = pcommand >>= getOrSearch
+
+    match run pcommandstring str with
+        | Success(result, _, _)   -> printfn "Success: %A" result
+        | Failure(errorMsg, _, _) -> printfn "Failure: %s" errorMsg
