@@ -14,21 +14,20 @@ type HearthBotCommand =
 
 module HearthstoneApi = 
 
-    open System
     open FSharp.Data
 
-    let request key command term = 
-        let url = sprintf "https://omgvamp-hearthstone-v1.p.mashape.com/cards/%s/%s" command term
-        Http.RequestString  ( url, headers = [ "X-Mashape-Key", key])
+    let query command key = 
 
-    let hitApi command key = 
+        let request key command term = 
+            let url = sprintf "https://omgvamp-hearthstone-v1.p.mashape.com/cards/%s/%s" command term
+            Http.RequestString  ( url, headers = [ "X-Mashape-Key", key])
+
         match command with 
         | Search(search) -> request "search" search.searchTerm key
         | Get(get) -> request "cards" get.card key
 
 module HearthbotCommandParser = 
 
-    open System
     open FParsec
 
     let Parse str = 
