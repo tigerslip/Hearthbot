@@ -22,20 +22,9 @@ Target "Build" (fun _ ->
     |> Log "AppBuild-Output: "
 )
 
-let testDlls = !! (buildDir + "/*.tests.dll")
-
-Target "NUnitTest" (fun _ ->
-        testDlls
-        |> NUnit3 (fun p ->
-            {p with
-                OutputDir = testDir + "TestResults.xml"
-                ToolPath = "C:/Program Files (x86)/NUnit.org/nunit-console/nunit3-console.exe"})
-)
-
 // Build order
 "Clean"
   ==> "Build"
-  ==> "NUnitTest"
 
 // start build
-RunTargetOrDefault "NUnitTest"
+RunTargetOrDefault "Build"
