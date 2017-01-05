@@ -1,4 +1,4 @@
-namespace Hearthbot.Data
+namespace Hearthbot.Core
 
 type GetCommand = {
     card:string
