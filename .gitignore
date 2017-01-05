@@ -57,7 +57,6 @@ tools/SourceLink.Fake
 release.cmd
 Samples/typescript/out/
 help/RELEASE_NOTES.md
-paket.exe
 paket-files/
 
 # Ignore the Vagrant local directories
