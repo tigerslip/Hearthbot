@@ -10,15 +10,13 @@ open Suave.Filters
 let printthis str  = 
     printfn "%s" str
     str
-let huh what = 
-    what
 
-let app : WebPart = 
-    choose
-        [ 
-            POST >=> choose
-                //[ path "/hearthbot" >=> request (fun req -> add (printthis <| req.ToString()) ; OK "") ]
-                [ path "/hearthbot" >=> request (fun req -> add ; OK "") ]
-        ]
+let getBody req = 
+    let getString rawForm = 
+        System.Text.Encoding.UTF8.GetString(rawForm)
+
+    req.rawForm |> getString
+
+let app : WebPart = POST >=> request (getBody >> printthis >> OK)
 
 startWebServer defaultConfig app

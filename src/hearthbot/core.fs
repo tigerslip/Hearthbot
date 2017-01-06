@@ -16,7 +16,7 @@ module HearthstoneApi =
 
     open FSharp.Data
 
-    let query command key = 
+    let Query key command = 
 
         let request key command term = 
             let url = sprintf "https://omgvamp-hearthstone-v1.p.mashape.com/cards/%s/%s" command term
@@ -51,5 +51,5 @@ module HearthbotCommandParser =
         let pcommandstring = pcommand >>= getOrSearch
 
         match run pcommandstring str with
-            | Success(result, _, _)   -> printfn "Success: %A" result
-            | Failure(errorMsg, _, _) -> printfn "Failure: %s" errorMsg
+            | Success(result, _, _)   -> Some(result)
+            | Failure(errorMsg, _, _) -> None
