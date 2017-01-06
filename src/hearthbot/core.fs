@@ -19,12 +19,13 @@ module HearthstoneApi =
     let Query key command = 
 
         let request key command term = 
+            printfn "querying mashape with command %s and term %s" command term
             let url = sprintf "https://omgvamp-hearthstone-v1.p.mashape.com/cards/%s/%s" command term
             Http.RequestString  ( url, headers = [ "X-Mashape-Key", key])
 
         match command with 
-        | Search(search) -> request "search" search.searchTerm key
-        | Get(get) -> request "cards" get.card key
+        | Search(search) -> request key "search" search.searchTerm
+        | Get(get) -> request key "cards" get.card
 
 module HearthbotCommandParser = 
 
