@@ -6,7 +6,7 @@ open Fake.Testing
 
 let buildDir  = "./build/"
 let testDir = "./tests/"
-let deployDir = "../wwwroot/"
+let deployDir = "../wwwroot/api/"
 
 let appReferences  =
     !! "/**/*.csproj"
@@ -35,4 +35,4 @@ Target "AzureDeploy" (fun _ ->
   ==> "AzureDeploy"
 
 // start build
-RunTargetOrDefault "Build"
+RunTargetOrDefault "AzureDeploy"

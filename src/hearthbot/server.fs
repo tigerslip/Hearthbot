@@ -22,7 +22,6 @@ let getBody req =
 
     req.rawForm |> getString
 
-let test : WebPart = GET >=> (OK "hello")
 let app : WebPart = POST >=> request (getBody >> run >> OK)
 
-startWebServer defaultConfig test
+startWebServer defaultConfig app
