@@ -21,7 +21,7 @@ let main [| port |] =
             | None -> "Could not parse hearthbot request"
 
     let run str : string = 
-        printfn "%s" str
+        printfn "body is %s" str
         str
         |> Parse
         |> routeParseResult
