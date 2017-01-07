@@ -3,8 +3,8 @@ open Suave.Successful
 open Suave.Web
 open Suave.Operators
 open Suave.Filters
-open Hearthbot.Core.HearthbotCommandParser
-open Hearthbot.Core.HearthstoneApi
+open HearthbotCommands
+open MashapeHSApi
 open System.Net
 open System
 
