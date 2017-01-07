@@ -1,5 +1,6 @@
 #r "./packages/FAKE/tools/FakeLib.dll"
 
+open System
 open Fake
 open Fake.Testing
 
@@ -24,8 +25,8 @@ Target "Build" (fun _ ->
 )
 
 Target "AzureDeploy" (fun _ -> 
-    let buildFiles = !! "./build/*"
-    CopyFiles "./deploy" buildFiles
+    let buildFiles = !! (sprintf "%s*" buildDir)
+    CopyFiles deployDir buildFiles
     )
 
 // Build order
