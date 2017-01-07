@@ -25,11 +25,13 @@ let main [| port |] =
         |> Parse
         |> routeParseResult str
 
-    let getBody req = 
+    let getBody (req:HttpRequest) = 
         let getString rawForm = 
             System.Text.Encoding.UTF8.GetString(rawForm)
 
-        req.rawForm |> getString
+        match req.formData "text" with
+         | Choice1Of2(other) -> other
+         | Choice2Of2(text) -> text
 
     let app : WebPart = POST >=> request (getBody >> run >> OK)
 
