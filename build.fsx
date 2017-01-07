@@ -6,8 +6,7 @@ open Fake.Testing
 
 let buildDir  = "./build/"
 let testDir = "./tests/"
-let deployDir = "../wwwroot/api/"
-
+let deployDir = "../wwwroot/"
 let appReferences  =
     !! "/**/*.csproj"
     ++ "/**/*.fsproj"
