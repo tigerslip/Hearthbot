@@ -5,6 +5,7 @@ open Fake.Testing
 
 let buildDir  = "./build/"
 let testDir = "./tests/"
+let deployDir = "./deploy/"
 
 let appReferences  =
     !! "/**/*.csproj"
@@ -13,7 +14,7 @@ let appReferences  =
 let version = "0.1"  // or retrieve from CI server
 
 Target "Clean" (fun _ ->
-    CleanDirs [buildDir; testDir]
+    CleanDirs [buildDir; testDir; deployDir]
 )
 
 Target "Build" (fun _ ->
@@ -22,9 +23,15 @@ Target "Build" (fun _ ->
     |> Log "AppBuild-Output: "
 )
 
+Target "AzureDeploy" (fun _ -> 
+    let buildFiles = !! "./build/*"
+    CopyFiles "./deploy" buildFiles
+    )
+
 // Build order
 "Clean"
   ==> "Build"
+  ==> "AzureDeploy"
 
 // start build
 RunTargetOrDefault "Build"

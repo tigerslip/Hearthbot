@@ -142,7 +142,9 @@
   <ItemGroup>
     <Compile Include="core.fs" />
     <Compile Include="server.fs" />
-    <Content Include="web.config" />
+    <Content Include="web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
