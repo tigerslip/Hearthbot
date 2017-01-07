@@ -15,16 +15,15 @@ let main [| port |] =
               bindings = [ HttpBinding.mk HTTP IPAddress.Loopback (uint16 port) ]
               listenTimeout = TimeSpan.FromMilliseconds 3000. }
 
-    let routeParseResult command = 
+    let routeParseResult str command = 
         match command with
             | Some(cmd) -> Query "TVEvw4MKnumshTNOevm3Svrbmkqgp1ukSh5jsn5CDa3g5x6GLM" cmd
-            | None -> "Could not parse hearthbot request"
+            | None -> sprintf "Could not parse hearthbot request: %s" str
 
     let run str : string = 
-        printfn "body is %s" str
         str
         |> Parse
-        |> routeParseResult
+        |> routeParseResult str
 
     let getBody req = 
         let getString rawForm = 
