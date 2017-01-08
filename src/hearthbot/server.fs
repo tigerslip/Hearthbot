@@ -7,7 +7,7 @@ open HearthbotCommands
 open MashapeHSApi
 open System.Net
 open System
-open Pipeline
+open CommandRouter
 
 [<EntryPoint>]
 let main [| port |] =
@@ -22,7 +22,7 @@ let main [| port |] =
          | Choice1Of2(other) -> other
          | Choice2Of2(text) -> text
 
-    let app : WebPart = POST >=> request (getBody >> pipeRequest >> OK)
+    let app : WebPart = POST >=> request (getBody >> RouteRequest >> OK)
 
     startWebServer config app
     0

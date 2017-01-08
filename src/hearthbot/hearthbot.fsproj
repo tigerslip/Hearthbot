@@ -46,7 +46,7 @@
     <Compile Include="HearthbotCommands.fs" />
     <Compile Include="SlackFormatter.fs" />
     <Compile Include="MashapeHSApi.fs" />
-    <Compile Include="Pipeline.fs" />
+    <Compile Include="CommandRouter.fs" />
     <Compile Include="server.fs" />
     <Content Include="web.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
