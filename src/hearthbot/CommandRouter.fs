@@ -11,10 +11,10 @@ let RouteRequest raw : string =
     let routeCmd cmd : string = 
         match cmd with 
          | Search(search) -> 
-            Search search.searchTerm token 
+            Search token search.searchTerm 
             |> FormatCards
          | Get(get) -> 
-            Get get.card token 
+            Get token get.card 
             |> FormatCards
 
     let handleCmd command = 
