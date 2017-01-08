@@ -49,7 +49,7 @@ type SlackAttachment = {
     thumb_url:string // "http://example.com/path/to/thumb.png",
     footer:string // "Slack API",
     footer_icon:string // "https://platform.slack-edge.com/img/default_application_icon.png",
-    ts:int // 123456789
+    ts:int // timestamp in epoch 123456789
 }
 
 type SlackResponse = {
