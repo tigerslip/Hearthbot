@@ -1,0 +1,20 @@
+{
+    "artist": "Wayne Reynolds",
+    "attack": 5,
+    "cardId": "EX1_559",
+    "cardSet": "Classic",
+    "collectible": true,
+    "cost": 7,
+    "elite": true,
+    "faction": "Neutral",
+    "flavor": "Antonidas was the Grand Magus of the Kirin Tor, and Jaina's mentor.  This was a big step up from being Grand Magus of Jelly Donuts.",
+    "health": 7,
+    "img": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/EX1_559.png",
+    "imgGold": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/EX1_559_premium.gif",
+    "locale": "enUS",
+    "name": "Archmage Antonidas",
+    "playerClass": "Mage",
+    "rarity": "Legendary",
+    "text": "Whenever you cast a spell, add a 'Fireball' spell to_your hand.",
+    "type": "Minion"
+}

@@ -1,7 +1,9 @@
 module MashapeHSApi
 
-open FSharp.Data
 open HearthbotCommands
+open SlackFormatter
+open FSharp.Data
+open Data
 
 let Query key command = 
 

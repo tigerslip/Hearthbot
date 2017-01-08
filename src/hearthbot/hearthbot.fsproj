@@ -42,9 +42,10 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data.fs" />
     <Compile Include="HearthbotCommands.fs" />
-    <Compile Include="MashapeHSApi.fs" />
     <Compile Include="SlackFormatter.fs" />
+    <Compile Include="MashapeHSApi.fs" />
     <Compile Include="server.fs" />
     <Content Include="web.config" >
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

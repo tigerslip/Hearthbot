@@ -26,8 +26,6 @@ let main [| port |] =
         |> routeParseResult str
 
     let getBody (req:HttpRequest) = 
-        let getString rawForm = 
-            System.Text.Encoding.UTF8.GetString(rawForm)
 
         match req.formData "text" with
          | Choice1Of2(other) -> other

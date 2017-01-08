@@ -1,18 +1,7 @@
 module HearthbotCommands 
 
 open FParsec
-
-type GetCommand = {
-    card:string
-}
-
-type SearchCommand = {
-    searchTerm:string
-}
-
-type HearthBotCommand = 
-    | Get of GetCommand
-    | Search of SearchCommand
+open Data
 
 let Parse str = 
 

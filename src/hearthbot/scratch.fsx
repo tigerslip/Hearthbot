@@ -1,31 +1,10 @@
 #r "../../packages/suave/lib/net40/suave.dll"
 #r "../../build/hearthbot.exe"
+#r "../../packages/FSharp.Data/lib/net40/FSharp.Data.dll"
 
-open System
-open Suave                 // always open suave
-open Suave.Successful      // for OK-result
-open Suave.Web             // for config
-open Suave.Operators
-open Suave.Filters
-open Hearthbot.Core.HearthbotCommandParser
-open Hearthbot.Core.HearthstoneApi
+open FSharp.Data
 
-let routeParseResult command = 
-    match command with
-        | Some(cmd) -> Query "TVEvw4MKnumshTNOevm3Svrbmkqgp1ukSh5jsn5CDa3g5x6GLM" cmd
-        | None -> "Could not parse hearthbot request"
+let sample = Cards.GetSamples()
 
-let run str : string = 
-    str
-    |> Parse
-    |> routeParseResult
-
-let getBody req = 
-    let getString rawForm = 
-        System.Text.Encoding.UTF8.GetString(rawForm)
-
-    req.rawForm |> getString
-
-let app : WebPart = POST >=> path "/hearthbot" >=> request (getBody >> run >> OK)
-
-startWebServer defaultConfig app
+Array.take 2 sample
+let first = Array.item 0 sample
