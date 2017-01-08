@@ -4,5 +4,6 @@ nuget FAKE
 nuget fparsec
 nuget FSharp.Core
 nuget fsharp.data
+nuget newtonsoft.json
 nuget nunit
 nuget Suave

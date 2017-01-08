@@ -9,12 +9,11 @@ let rec last n xs =
   if List.length xs <= n then xs
   else last n xs.Tail
 
+let FormatCard card = 
+    sprintf "%s %i" card.name card.cost
 
-let formatCards (cards:string) = 
+let FormatCards cards = 
 
-    let printCard card = 
-        sprintf "%s %s" card.name card.cost
-
-    cards
-    |> Cards.Parse
-    |> Array.map printCard
+    cards 
+    |> List.map FormatCard
+    |> String.concat "\n"
