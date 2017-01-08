@@ -10,7 +10,7 @@ let rec last n xs =
   else last n xs.Tail
 
 let FormatCard card = 
-    sprintf "%s %i" card.name card.cost
+    sprintf "%s\n%s" card.name card.img
 
 let FormatCards cards = 
 

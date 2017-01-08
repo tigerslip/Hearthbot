@@ -15,7 +15,10 @@ let pipeRequest raw =
         match command with
             | Some(cmd) -> queryApi cmd
             | None -> sprintf "Could not parse hearthbot request: %s" str
-
-    raw
-    |> Parse
-    |> routeParseResult raw
+    
+    try
+        raw
+        |> Parse
+        |> routeParseResult raw
+    with
+     | :? System.Exception as ex -> "Unable to process your request. try get %card% or search %card%"
