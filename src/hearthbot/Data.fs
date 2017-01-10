@@ -56,5 +56,6 @@ type SlackResponse = {
     text:string
     username:string
     mrkdwn:bool
+    unfurl_links:bool
     attachments:SlackAttachment array
 }

@@ -14,7 +14,7 @@ let FormatCard card =
 
 let cardsToSlackResponse (cards:Card list) : SlackResponse = 
     
-    let cardToAttachment card = 
+   (* let cardToAttachment card = 
         {
             fallback = "";
             color = "";
@@ -30,15 +30,23 @@ let cardsToSlackResponse (cards:Card list) : SlackResponse =
             footer = "";
             footer_icon = "";
             ts = 0
-        }
+        }*)
     
-    let attachments = 
+    let imgUrls = 
+        cards
+        |> Seq.truncate 3
+        |> Seq.map (fun c -> c.img)
+        |> Seq.toArray
+
+    let text = String.Join("\n", cards)
+    
+(*    let attachments = 
         cards 
         |> Seq.truncate 3
         |> Seq.map cardToAttachment
-        |> Seq.toArray
+        |> Seq.toArray*)
 
-    {text = "Results"; username = "hearthbot"; mrkdwn = false; attachments = attachments}
+    {text = text; username = "hearthbot"; mrkdwn = false; unfurl_links = true; attachments = Array.empty}
 
 let FormatCards cards = 
     cards 
