@@ -54,5 +54,7 @@ type SlackAttachment = {
 
 type SlackResponse = {
     text:string
+    username:string
+    mrkdwn:bool
     attachments:SlackAttachment array
 }

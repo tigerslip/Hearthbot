@@ -38,7 +38,7 @@ let cardsToSlackResponse (cards:Card list) : SlackResponse =
         |> Seq.map cardToAttachment
         |> Seq.toArray
 
-    {text = "Results"; attachments = attachments}
+    {text = "Results"; username = "hearthbot"; mrkdwn = false; attachments = attachments}
 
 let FormatCards cards = 
     cards 
