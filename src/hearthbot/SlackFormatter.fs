@@ -14,7 +14,7 @@ let FormatCard card =
 
 let cardsToSlackResponse (cards:Card list) : SlackResponse = 
     
-   (* let cardToAttachment card = 
+    let cardToAttachment card = 
         {
             fallback = "";
             color = "";
@@ -30,21 +30,15 @@ let cardsToSlackResponse (cards:Card list) : SlackResponse =
             footer = "";
             footer_icon = "";
             ts = 0
-        }*)
-    
-    let text = 
-        cards
-        |> Seq.truncate 3
-        |> Seq.map (fun c -> c.img)
-        |> Seq.reduce(fun state next -> sprintf "%s\n%s" state next)
+        }
 
-(*    let attachments = 
+    let attachments = 
         cards 
         |> Seq.truncate 3
         |> Seq.map cardToAttachment
-        |> Seq.toArray*)
+        |> Seq.toArray
 
-    {text = text; username = "hearthbot"; mrkdwn = false; unfurl_links = true; attachments = Array.empty}
+    {text = "result"; username = "hearthbot"; mrkdwn = true; unfurl_links = true; attachments = attachments;}
 
 let FormatCards cards = 
     cards 
