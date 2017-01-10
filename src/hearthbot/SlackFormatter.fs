@@ -32,14 +32,12 @@ let cardsToSlackResponse (cards:Card list) : SlackResponse =
             ts = 0
         }*)
     
-    let imgUrls = 
+    let text = 
         cards
         |> Seq.truncate 3
         |> Seq.map (fun c -> c.img)
-        |> Seq.toArray
+        |> Seq.reduce(fun state next -> sprintf "%s\n%s" state next)
 
-    let text = String.Join("\n", cards)
-    
 (*    let attachments = 
         cards 
         |> Seq.truncate 3
