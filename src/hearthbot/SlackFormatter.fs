@@ -16,7 +16,7 @@ let cardsToSlackResponse (cards:Card list) : SlackResponse =
     
     let cardToAttachment card = 
         {
-            fallback = "";
+            fallback = card.name;
             color = "";
             pretext = "";
             author_name = "";
