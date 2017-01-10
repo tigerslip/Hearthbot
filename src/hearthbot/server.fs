@@ -10,11 +10,13 @@ open System
 open CommandRouter
 
 [<EntryPoint>]
-let main [| port |] =
+let main [| port; token |] =
     let config =
         { defaultConfig with
               bindings = [ HttpBinding.mk HTTP IPAddress.Loopback (uint16 port) ]
               listenTimeout = TimeSpan.FromMilliseconds 3000. }
+
+    let routeRequest = RouteRequest token
 
     let getBody (req:HttpRequest) = 
 
@@ -24,7 +26,7 @@ let main [| port |] =
 
     let app : WebPart = 
         POST 
-        >=> request (getBody >> RouteRequest >> OK) 
+        >=> request (getBody >> routeRequest >> OK) 
         >=> Writers.setMimeType "application/json; charset=utf-8"
 
     startWebServer config app

@@ -5,8 +5,7 @@ open HearthbotCommands
 open MashapeHSApi
 open SlackFormatter
 
-let token = "TVEvw4MKnumshTNOevm3Svrbmkqgp1ukSh5jsn5CDa3g5x6GLM"
-let RouteRequest raw : string = 
+let RouteRequest token raw  = 
 
     let routeCmd cmd : string = 
         match cmd with 
