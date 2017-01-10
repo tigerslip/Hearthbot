@@ -22,7 +22,10 @@ let main [| port |] =
          | Choice1Of2(other) -> other
          | Choice2Of2(text) -> text
 
-    let app : WebPart = POST >=> request (getBody >> RouteRequest >> OK)
+    let app : WebPart = 
+        POST 
+        >=> request (getBody >> RouteRequest >> OK) 
+        >=> Writers.setMimeType "application/json; charset=utf-8"
 
     startWebServer config app
     0
