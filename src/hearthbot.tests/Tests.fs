@@ -37,7 +37,7 @@ let tests =
       match Parse command with
         | Some(cmd) -> 
             match cmd with
-             | Get(get) -> Expect.equal get.card "ysera" "should be get golden ysera"
+             | Get(get) -> Expect.equal get.golden true "should be get golden ysera"
              | _ -> failtest "should have been a get gold card cmd"
         | None -> failtest "should be a result"
   ]

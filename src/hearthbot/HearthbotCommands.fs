@@ -11,7 +11,9 @@ let Parse str =
 
     let pcommand = spaces >>. (psearch <|> pget) .>> spaces
 
-    let pcardname = restOfLine false |>> (fun name -> Get {card = name; golden = false})
+    let pcard = manyCharsTill (noneOf "-") eof
+
+    let pcardname = pcard |>> (fun name -> Get {card = name; golden = false})
 
     let psearchTerm = restOfLine false |>> (fun term -> Search {searchTerm = term})
 
@@ -23,6 +25,10 @@ let Parse str =
 
     let pcommandstring = pcommand >>= getOrSearch
 
+    let printAndNone (error:string) : HearthBotCommand option = 
+        let a = sprintf "%s" error
+        None
+
     match run pcommandstring str with
         | Success(result, _, _)   -> Some(result)
-        | Failure(errorMsg, _, _) -> None
+        | Failure(errorMsg, _, _) -> printAndNone errorMsg
