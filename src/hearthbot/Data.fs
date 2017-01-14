@@ -4,6 +4,7 @@ open FSharp.Data
 
 type GetCommand = {
     card:string
+    golden:bool
 }
 
 type SearchCommand = {
